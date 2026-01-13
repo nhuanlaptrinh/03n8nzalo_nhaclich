@@ -1,0 +1,581 @@
+{
+  "name": "00zalon8n_Task_ALT",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c138e9a9-ab3a-48c0-bef2-d3989944a943",
+              "leftValue": "={{ $json.property_ngay_bat_dau.start }}",
+              "rightValue": "={{ $now.toFormat('yyyy-MM-dd') }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1424,
+        704
+      ],
+      "id": "0c3ecc9e-fe38-4609-9040-f63d8852edb3",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        512
+      ],
+      "id": "db4fc76c-f147-4cdc-a2e6-feaf4f1229a4",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "options": {
+          "systemMessage": "=Bạn hãy đọc trực tiếp dữ liệu công việc từ {{ $json.data }}\nMỗi phần tử trong dữ liệu tương ứng với một công việc và có các thông tin như\n\nTên công việc\n\nGhi chú hoặc lưu ý nếu có\n\nNgày bắt đầu\n\nTrạng thái hoàn thành\n\nNhiệm vụ của bạn là tổng hợp và trình bày danh sách công việc hiện tại dựa hoàn toàn trên {{ $json.data }}\n\nYêu cầu đầu ra\n\nBắt đầu nội dung bằng đúng câu sau\nXin Chào Anh Lập Trình em thông báo tính trạng công việc hiện tại\n\nSau đó liệt kê các công việc theo đúng cấu trúc sau\n\nTên công việc\n\nLưu ý: Nội dung ghi chú của công việc nếu có\n\nBắt đầu: Ngày bắt đầu công việc\n\nTrạng thái: Đã hoàn thành hoặc Chưa hoàn thành\n\nQuy tắc bắt buộc\n\nĐánh số thứ tự công việc theo danh sách dữ liệu\n\nNội dung từng mục phải lấy trực tiếp từ {{ $json.data }}\n\nNếu công việc không có lưu ý thì ghi Lưu ý: Không có\n\nKhông tự thêm nội dung ngoài dữ liệu\n\nKhông sử dụng emoji hoặc ký tự đặc biệt\n\nVăn phong rõ ràng mạch lạc phù hợp báo cáo công việc\n\nChỉ trả về nội dung báo cáo theo đúng format trên không giải thích thêm"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        1872,
+        400
+      ],
+      "id": "8e82dcad-0797-4a07-99d1-c0c83e147605",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào2').item.json.api_zalo.trim() }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Thông Số Đầu Vào2').item.json.Zalo_Chat_ID }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2224,
+        512
+      ],
+      "id": "e39faa38-385a-4c30-8a3d-21d5b3824959",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b549214c-80ce-4ff3-bd43-c3631f455f1f",
+              "name": "api_zalo",
+              "value": "3682309957303154161:toHJdCNZuRLAbgzFAthLBcGJROrUYGJGdRwfGNwipSjhMXQMAXFxzKIearPkfHEE",
+              "type": "string"
+            },
+            {
+              "id": "e63f21d4-28f8-4ac0-ac30-25fc98990511",
+              "name": "Zalo_Chat_ID",
+              "value": "c083c42b2060c93e9071",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        704
+      ],
+      "id": "aef10f63-c258-4e16-b332-aa4de20e18c0",
+      "name": "Thông Số Đầu Vào2"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 13
+            },
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        704
+      ],
+      "id": "5343380d-ff10-4cbe-a1d8-3b3c7eadaa3a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        624
+      ],
+      "id": "54e4d147-4d12-479a-8859-a105d6657c02",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kySImgI1WWGnreMX",
+          "name": "Google Gemini(PaLM) Api account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "={{ $json.url }}",
+          "mode": "url"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        704
+      ],
+      "id": "bce42521-ccb0-441f-a3a8-225242747f0e",
+      "name": "Get many database pages",
+      "credentials": {
+        "notionApi": {
+          "id": "SIHU9k19pIxqENNI",
+          "name": "QLCV_Hang_Ngay_ALT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $json.access_token_zalo.trim()}}/setWebhook ",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.Webhook_URL }}"
+            },
+            {
+              "name": "secret_token",
+              "value": "aa1233456"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        976,
+        -48
+      ],
+      "id": "ad61ba57-99b2-4253-a97c-47b7217cffa1",
+      "name": "HTTP Request",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        528,
+        -48
+      ],
+      "id": "3bfc6c74-500c-4c5b-a501-0ca76d772109",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "801137d3-13bc-4dae-a74d-bfb1c4454f77",
+              "name": "access_token_zalo",
+              "value": "3682309957303154161:toHJdCNZuRLAbgzFAthLBcGJROrUYGJGdRwfGNwipSjhMXQMAXFxzKIearPkfHEE",
+              "type": "string"
+            },
+            {
+              "id": "851b57e5-fbbc-4793-9fe1-8b70c2dea794",
+              "name": "Webhook_URL",
+              "value": "https://vpsn8n.anhlaptrinh.vn/webhook-test/77480b0c-0cf1-404c-b49c-552fddd0d317ammm",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        -48
+      ],
+      "id": "5b8b1732-c204-4117-b4d4-4e0b374d7e41",
+      "name": "Input1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "77480b0c-0cf1-404c-b49c-552fddd0d317ammm",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        -272
+      ],
+      "id": "9aeb80bb-1917-45b6-ab23-bcecd02b0574",
+      "name": "Webhook",
+      "webhookId": "77480b0c-0cf1-404c-b49c-552fddd0d317",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào2').item.json.api_zalo.trim() }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Thông Số Đầu Vào2').item.json.Zalo_Chat_ID }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2224,
+        912
+      ],
+      "id": "e6184a38-5498-4cf4-9ff6-bd3af5666884",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1648,
+        912
+      ],
+      "id": "66beb8dd-1a4d-402d-b01b-c9fda8f99b83",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "gửi tin nhắn tới người sử dụng",
+        "options": {
+          "systemMessage": "=Bạn là trợ lý thông báo công việc.\n\nHãy tạo thông báo gửi tới “Anh Lập Trình” với nội dung:\n- Thông báo rằng hôm nay CHƯA có dữ liệu công việc.\n- Yêu cầu anh truy cập link Notion bên dưới để thiết lập lịch làm việc cho ngày hôm nay.\n\nYÊU CẦU BẮT BUỘC:\n- Link URL phải được hiển thị DẠNG THUẦN (plain text).\n- KHÔNG được chứa các ký tự đặc biệt như: [, ], (, ), hoặc markdown.\n- KHÔNG được thêm dấu chấm, dấu phẩy, hay ký tự nào ở đầu và cuối link.\n\nNội dung thông báo ngắn gọn, rõ ràng, dễ hiểu.\n\nLink Notion:\n\n{{ $('Get a database').item.json.url }}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1872,
+        912
+      ],
+      "id": "a6aa4509-3566-490a-bb5b-6815e5b48ba8",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        1136
+      ],
+      "id": "b671e3b0-7c04-49d2-93f5-9ab655293bab",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "kySImgI1WWGnreMX",
+          "name": "Google Gemini(PaLM) Api account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "database",
+        "databaseId": {
+          "__rl": true,
+          "value": "2e7c406f-1f2e-80a2-96bd-c75c89945f9c",
+          "mode": "list",
+          "cachedResultName": "Quan_Ly_Cong_Viec_Hang_Ngay_ALT",
+          "cachedResultUrl": "https://www.notion.so/2e7c406f1f2e80a296bdc75c89945f9c"
+        }
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        976,
+        704
+      ],
+      "id": "0dfd0295-de24-4a9a-be0d-1bc364551a50",
+      "name": "Get a database",
+      "credentials": {
+        "notionApi": {
+          "id": "SIHU9k19pIxqENNI",
+          "name": "QLCV_Hang_Ngay_ALT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "2e7c406f-1f2e-80a2-96bd-c75c89945f9c",
+          "mode": "list",
+          "cachedResultName": "Quan_Ly_Cong_Viec_Hang_Ngay_ALT",
+          "cachedResultUrl": "https://www.notion.so/2e7c406f1f2e80a296bdc75c89945f9c"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        176
+      ],
+      "id": "19775706-751c-4bcb-9823-3b9871f1cc57",
+      "name": "Get many database pages1",
+      "credentials": {
+        "notionApi": {
+          "id": "SIHU9k19pIxqENNI",
+          "name": "QLCV_Hang_Ngay_ALT"
+        }
+      },
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Thông Số Đầu Vào2": {
+      "main": [
+        [
+          {
+            "node": "Get a database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Thông Số Đầu Vào2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many database pages": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Input1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a database": {
+      "main": [
+        [
+          {
+            "node": "Get many database pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8ed579e3-0df3-4f1f-ad95-caf6b195afd6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
+  },
+  "id": "dhYiX7YHwczORwZr",
+  "tags": []
+}
