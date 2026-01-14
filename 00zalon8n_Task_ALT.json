@@ -158,13 +158,7 @@
         -192
       ],
       "id": "71637c82-b68c-4747-8370-088345320336",
-      "name": "Google Gemini Chat Model4",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "wnbp5mrqr5EIBbd7",
-          "name": "NS_Hoc_N8n"
-        }
-      }
+      "name": "Google Gemini Chat Model4"
     },
     {
       "parameters": {
@@ -187,8 +181,8 @@
       "name": "Get many database pages4",
       "credentials": {
         "notionApi": {
-          "id": "rgW5mf9GV1y59LT8",
-          "name": "NS_Hoc_N8n"
+          "id": "sePvPgQjkmYUAfs6",
+          "name": "Notion account"
         }
       }
     },
@@ -265,8 +259,8 @@
       "name": "Google Gemini Chat Model5",
       "credentials": {
         "googlePalmApi": {
-          "id": "wnbp5mrqr5EIBbd7",
-          "name": "NS_Hoc_N8n"
+          "id": "87SA06KISLS7DPpQ",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     },
@@ -288,13 +282,7 @@
         -256
       ],
       "id": "211c7941-b5ce-4c56-8bcf-166f568d6472",
-      "name": "Get a database2",
-      "credentials": {
-        "notionApi": {
-          "id": "rgW5mf9GV1y59LT8",
-          "name": "NS_Hoc_N8n"
-        }
-      }
+      "name": "Get a database2"
     },
     {
       "parameters": {
@@ -528,7 +516,7 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "6bab8d8a-1d00-4323-a5d8-2620dec1e30a",
+  "versionId": "e464f57c-ab30-4edb-9bde-8a66d63c6e1c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
