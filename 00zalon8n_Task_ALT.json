@@ -28,11 +28,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        1424,
-        704
+        544,
+        -416
       ],
-      "id": "0c3ecc9e-fe38-4609-9040-f63d8852edb3",
-      "name": "If2"
+      "id": "121e0512-e242-4147-aab6-0c072afd21e1",
+      "name": "If6"
     },
     {
       "parameters": {
@@ -42,11 +42,11 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1648,
-        512
+        832,
+        -416
       ],
-      "id": "db4fc76c-f147-4cdc-a2e6-feaf4f1229a4",
-      "name": "Aggregate2"
+      "id": "e5b50212-818c-4779-aebf-3c0bf10ae25a",
+      "name": "Aggregate8"
     },
     {
       "parameters": {
@@ -59,22 +59,22 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        1872,
-        400
+        1056,
+        -416
       ],
-      "id": "8e82dcad-0797-4a07-99d1-c0c83e147605",
-      "name": "AI Agent2"
+      "id": "a744b98d-e897-41ba-b9b0-047d2ef96dae",
+      "name": "AI Agent6"
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào2').item.json.api_zalo.trim() }}/sendMessage",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào3').item.json.api_zalo.trim() }}/sendMessage",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
             {
               "name": "chat_id",
-              "value": "={{ $('Thông Số Đầu Vào2').item.json.Zalo_Chat_ID }}"
+              "value": "={{ $('Thông Số Đầu Vào3').item.json.Zalo_Chat_ID }}"
             },
             {
               "name": "text",
@@ -87,11 +87,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        2224,
-        512
+        1408,
+        -416
       ],
-      "id": "e39faa38-385a-4c30-8a3d-21d5b3824959",
-      "name": "HTTP Request2"
+      "id": "903dd582-bc89-4927-9268-e514ce9ba244",
+      "name": "HTTP Request8"
     },
     {
       "parameters": {
@@ -116,11 +116,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        752,
-        704
+        -864,
+        -256
       ],
-      "id": "aef10f63-c258-4e16-b332-aa4de20e18c0",
-      "name": "Thông Số Đầu Vào2"
+      "id": "51e3429c-db53-4b44-b7f9-c0d715a1a43c",
+      "name": "Thông Số Đầu Vào3"
     },
     {
       "parameters": {
@@ -141,11 +141,11 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        528,
-        704
+        -1088,
+        -256
       ],
-      "id": "5343380d-ff10-4cbe-a1d8-3b3c7eadaa3a",
-      "name": "Schedule Trigger"
+      "id": "1f840acf-4538-4666-83a5-99d34375d731",
+      "name": "Schedule Trigger2"
     },
     {
       "parameters": {
@@ -154,15 +154,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        1952,
-        624
+        1136,
+        -192
       ],
-      "id": "54e4d147-4d12-479a-8859-a105d6657c02",
-      "name": "Google Gemini Chat Model",
+      "id": "71637c82-b68c-4747-8370-088345320336",
+      "name": "Google Gemini Chat Model4",
       "credentials": {
         "googlePalmApi": {
-          "id": "kySImgI1WWGnreMX",
-          "name": "Google Gemini(PaLM) Api account 5"
+          "id": "wnbp5mrqr5EIBbd7",
+          "name": "NS_Hoc_N8n"
         }
       }
     },
@@ -180,116 +180,28 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        1200,
-        704
+        -416,
+        -256
       ],
-      "id": "bce42521-ccb0-441f-a3a8-225242747f0e",
-      "name": "Get many database pages",
+      "id": "a1f9a4a4-a650-45bc-9334-7ef69d23c2d9",
+      "name": "Get many database pages4",
       "credentials": {
         "notionApi": {
-          "id": "SIHU9k19pIxqENNI",
-          "name": "QLCV_Hang_Ngay_ALT"
+          "id": "rgW5mf9GV1y59LT8",
+          "name": "NS_Hoc_N8n"
         }
       }
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://bot-api.zaloplatforms.com/bot{{ $json.access_token_zalo.trim()}}/setWebhook ",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "url",
-              "value": "={{ $json.Webhook_URL }}"
-            },
-            {
-              "name": "secret_token",
-              "value": "aa1233456"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        976,
-        -48
-      ],
-      "id": "ad61ba57-99b2-4253-a97c-47b7217cffa1",
-      "name": "HTTP Request",
-      "disabled": true
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        528,
-        -48
-      ],
-      "id": "3bfc6c74-500c-4c5b-a501-0ca76d772109",
-      "name": "When clicking ‘Execute workflow’",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "801137d3-13bc-4dae-a74d-bfb1c4454f77",
-              "name": "access_token_zalo",
-              "value": "3682309957303154161:toHJdCNZuRLAbgzFAthLBcGJROrUYGJGdRwfGNwipSjhMXQMAXFxzKIearPkfHEE",
-              "type": "string"
-            },
-            {
-              "id": "851b57e5-fbbc-4793-9fe1-8b70c2dea794",
-              "name": "Webhook_URL",
-              "value": "https://vpsn8n.anhlaptrinh.vn/webhook-test/77480b0c-0cf1-404c-b49c-552fddd0d317ammm",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        752,
-        -48
-      ],
-      "id": "5b8b1732-c204-4117-b4d4-4e0b374d7e41",
-      "name": "Input1",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "77480b0c-0cf1-404c-b49c-552fddd0d317ammm",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        528,
-        -272
-      ],
-      "id": "9aeb80bb-1917-45b6-ab23-bcecd02b0574",
-      "name": "Webhook",
-      "webhookId": "77480b0c-0cf1-404c-b49c-552fddd0d317",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào2').item.json.api_zalo.trim() }}/sendMessage",
+        "url": "=https://bot-api.zaloplatforms.com/bot{{ $('Thông Số Đầu Vào3').item.json.api_zalo.trim() }}/sendMessage",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
             {
               "name": "chat_id",
-              "value": "={{ $('Thông Số Đầu Vào2').item.json.Zalo_Chat_ID }}"
+              "value": "={{ $('Thông Số Đầu Vào3').item.json.Zalo_Chat_ID }}"
             },
             {
               "name": "text",
@@ -302,11 +214,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        2224,
-        912
+        832,
+        -112
       ],
-      "id": "e6184a38-5498-4cf4-9ff6-bd3af5666884",
-      "name": "HTTP Request3"
+      "id": "8f1cf318-1615-40ca-9999-71cc61697b53",
+      "name": "HTTP Request10"
     },
     {
       "parameters": {
@@ -316,28 +228,28 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1648,
-        912
+        256,
+        -112
       ],
-      "id": "66beb8dd-1a4d-402d-b01b-c9fda8f99b83",
-      "name": "Aggregate"
+      "id": "d0f7165e-05d9-4221-8067-331ad5dc9665",
+      "name": "Aggregate9"
     },
     {
       "parameters": {
         "promptType": "define",
         "text": "gửi tin nhắn tới người sử dụng",
         "options": {
-          "systemMessage": "=Bạn là trợ lý thông báo công việc.\n\nHãy tạo thông báo gửi tới “Anh Lập Trình” với nội dung:\n- Thông báo rằng hôm nay CHƯA có dữ liệu công việc.\n- Yêu cầu anh truy cập link Notion bên dưới để thiết lập lịch làm việc cho ngày hôm nay.\n\nYÊU CẦU BẮT BUỘC:\n- Link URL phải được hiển thị DẠNG THUẦN (plain text).\n- KHÔNG được chứa các ký tự đặc biệt như: [, ], (, ), hoặc markdown.\n- KHÔNG được thêm dấu chấm, dấu phẩy, hay ký tự nào ở đầu và cuối link.\n\nNội dung thông báo ngắn gọn, rõ ràng, dễ hiểu.\n\nLink Notion:\n\n{{ $('Get a database').item.json.url }}\n"
+          "systemMessage": "=Bạn là trợ lý thông báo công việc.\n\nHãy tạo thông báo gửi tới “Anh Lập Trình” với nội dung:\n- Thông báo rằng hôm nay CHƯA có dữ liệu công việc.\n- Yêu cầu anh truy cập link Notion bên dưới để thiết lập lịch làm việc cho ngày hôm nay.\n\nYÊU CẦU BẮT BUỘC:\n- Link URL phải được hiển thị DẠNG THUẦN (plain text).\n- KHÔNG được chứa các ký tự đặc biệt như: [, ], (, ), hoặc markdown.\n- KHÔNG được thêm dấu chấm, dấu phẩy, hay ký tự nào ở đầu và cuối link.\n\nNội dung thông báo ngắn gọn, rõ ràng, dễ hiểu.\n\nLink Notion:\n\n{{ $('Get a database2').item.json.url }}\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        1872,
-        912
+        480,
+        -112
       ],
-      "id": "a6aa4509-3566-490a-bb5b-6815e5b48ba8",
-      "name": "AI Agent"
+      "id": "7a436b4f-9141-4538-87d1-4c4a2a4b0b61",
+      "name": "AI Agent7"
     },
     {
       "parameters": {
@@ -346,15 +258,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        1952,
-        1136
+        560,
+        112
       ],
-      "id": "b671e3b0-7c04-49d2-93f5-9ab655293bab",
-      "name": "Google Gemini Chat Model1",
+      "id": "808ed6ca-790c-4ec8-87c6-f245e04412b5",
+      "name": "Google Gemini Chat Model5",
       "credentials": {
         "googlePalmApi": {
-          "id": "kySImgI1WWGnreMX",
-          "name": "Google Gemini(PaLM) Api account 5"
+          "id": "wnbp5mrqr5EIBbd7",
+          "name": "NS_Hoc_N8n"
         }
       }
     },
@@ -363,203 +275,247 @@
         "resource": "database",
         "databaseId": {
           "__rl": true,
-          "value": "2e7c406f-1f2e-80a2-96bd-c75c89945f9c",
+          "value": "2e728a22-9fdd-818c-96a9-d57cd1d8bbd0",
           "mode": "list",
-          "cachedResultName": "Quan_Ly_Cong_Viec_Hang_Ngay_ALT",
-          "cachedResultUrl": "https://www.notion.so/2e7c406f1f2e80a296bdc75c89945f9c"
+          "cachedResultName": "Mau_Quan_Ly_Cong_Viec_Hang_Ngay_ALT_Ndel ",
+          "cachedResultUrl": "https://www.notion.so/2e728a229fdd818c96a9d57cd1d8bbd0"
         }
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        976,
-        704
+        -640,
+        -256
       ],
-      "id": "0dfd0295-de24-4a9a-be0d-1bc364551a50",
-      "name": "Get a database",
+      "id": "211c7941-b5ce-4c56-8bcf-166f568d6472",
+      "name": "Get a database2",
       "credentials": {
         "notionApi": {
-          "id": "SIHU9k19pIxqENNI",
-          "name": "QLCV_Hang_Ngay_ALT"
+          "id": "rgW5mf9GV1y59LT8",
+          "name": "NS_Hoc_N8n"
         }
       }
     },
     {
       "parameters": {
-        "resource": "databasePage",
-        "operation": "getAll",
-        "databaseId": {
-          "__rl": true,
-          "value": "2e7c406f-1f2e-80a2-96bd-c75c89945f9c",
-          "mode": "list",
-          "cachedResultName": "Quan_Ly_Cong_Viec_Hang_Ngay_ALT",
-          "cachedResultUrl": "https://www.notion.so/2e7c406f1f2e80a296bdc75c89945f9c"
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -256
+      ],
+      "id": "7b33f314-4a1b-4bfc-b86b-f048898986e0",
+      "name": "Aggregate10"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2e7a7bba-a9b6-4041-98e0-21097e2aef57",
+              "leftValue": "={{ $json.data && Array.isArray($json.data) ? ($json.data.some(item => item.property_ngay_bat_dau && item.property_ngay_bat_dau.start && item.property_ngay_bat_dau.start === $now.toFormat('yyyy-MM-dd')) ? 'true' : 'false') : 'false' }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.notion",
-      "typeVersion": 2.2,
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
       "position": [
-        528,
-        176
+        32,
+        -256
       ],
-      "id": "19775706-751c-4bcb-9823-3b9871f1cc57",
-      "name": "Get many database pages1",
-      "credentials": {
-        "notionApi": {
-          "id": "SIHU9k19pIxqENNI",
-          "name": "QLCV_Hang_Ngay_ALT"
-        }
+      "id": "778445a4-3544-4a4b-b63e-01184924328b",
+      "name": "If_kiemtra2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
       },
-      "disabled": true
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -416
+      ],
+      "id": "644b821d-afff-4685-82af-7f546c909d73",
+      "name": "Split Out"
     }
   ],
   "pinData": {},
   "connections": {
-    "If2": {
+    "If6": {
       "main": [
         [
           {
-            "node": "Aggregate2",
+            "node": "Aggregate8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Aggregate8": {
+      "main": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Thông Số Đầu Vào3": {
+      "main": [
+        [
+          {
+            "node": "Get a database2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger2": {
+      "main": [
+        [
+          {
+            "node": "Thông Số Đầu Vào3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many database pages4": {
+      "main": [
+        [
+          {
+            "node": "Aggregate10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate9": {
+      "main": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a database2": {
+      "main": [
+        [
+          {
+            "node": "Get many database pages4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate10": {
+      "main": [
+        [
+          {
+            "node": "If_kiemtra2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_kiemtra2": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Aggregate",
+            "node": "Aggregate9",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Aggregate2": {
+    "Split Out": {
       "main": [
         [
           {
-            "node": "AI Agent2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent2": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Thông Số Đầu Vào2": {
-      "main": [
-        [
-          {
-            "node": "Get a database",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "Thông Số Đầu Vào2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent2",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get many database pages": {
-      "main": [
-        [
-          {
-            "node": "If2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Input1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Input1": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get a database": {
-      "main": [
-        [
-          {
-            "node": "Get many database pages",
+            "node": "If6",
             "type": "main",
             "index": 0
           }
@@ -567,15 +523,16 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "availableInMCP": false
   },
-  "versionId": "8ed579e3-0df3-4f1f-ad95-caf6b195afd6",
+  "versionId": "6bab8d8a-1d00-4323-a5d8-2620dec1e30a",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "8ae9064574590f4bef62fe6c8cafaae52a5a90dd40cb184103af1049753a2d5d"
   },
-  "id": "dhYiX7YHwczORwZr",
+  "id": "Nd0KRgNz8hSVJl-VxaTaa",
   "tags": []
 }
